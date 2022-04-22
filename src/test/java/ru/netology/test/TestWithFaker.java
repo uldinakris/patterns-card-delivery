@@ -35,7 +35,7 @@ public class TestWithFaker {
         $x("//*[contains(text(),'Встреча успешно запланирована на')][contains(.,'" + date + "')]")
                 .should(Condition.visible, Duration.ofSeconds(15));
 
-        
+
 
         $x("//button[contains(., 'Запланировать')]").click();
         $x("//*[contains(text(),'Необходимо подтверждение')]")
