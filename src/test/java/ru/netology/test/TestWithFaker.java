@@ -6,16 +6,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import static com.codeborne.selenide.Selenide.*;
+import static ru.netology.test.DateUtil.getDate;
 
 public class TestWithFaker {
 
     private RegistrationInfo info;
 
     @BeforeEach
-    void SetUpAll() {
+    void setUpAll() {
         info = DataGenerator
                 .Registration
                 .generateInfo("ru");
@@ -46,12 +45,5 @@ public class TestWithFaker {
         $x("//button[contains(., 'Перепланировать')]").click();
         $x("//*[contains(text(),'Встреча успешно запланирована на')][contains(.,'" + date + "')]")
                 .should(Condition.visible, Duration.ofSeconds(15));
-    }
-
-
-    private String getDate(Integer plusDays, String formatArg) {
-        LocalDate date = LocalDate.now().plusDays(plusDays);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatArg);
-        return date.format(formatter);
     }
 }
