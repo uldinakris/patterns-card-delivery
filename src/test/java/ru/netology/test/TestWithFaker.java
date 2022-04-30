@@ -26,6 +26,7 @@ public class TestWithFaker {
     @Test
     void shouldSendForm() {
         String date = getDate(3, "dd.MM.yyyy");
+        String date2 = getDate(40, "dd.MM.yyyy");
         String time = getTime(40);
 
         Configuration.holdBrowserOpen = true;
@@ -54,7 +55,7 @@ public class TestWithFaker {
         }
 
         $x("//button[contains(., 'Перепланировать')]").click();
-        $x("//*[contains(text(),'Встреча успешно запланирована на')][contains(.,'" + date + "')]")
+        $x("//*[contains(text(),'Встреча успешно запланирована на')][contains(.,'" + date2 + "')]")
                 .should(Condition.visible, Duration.ofSeconds(15));
     }
 }
