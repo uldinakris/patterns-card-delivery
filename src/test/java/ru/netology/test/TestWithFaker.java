@@ -4,6 +4,10 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +17,12 @@ import static ru.netology.test.DateUtil.getDate;
 import static ru.netology.test.DateUtil.getTime;
 
 public class TestWithFaker {
+
+    @BeforeAll
+    static void setUp() {SelenideLogger.addListener("allure", new AllureSelenide()); }
+
+    @AfterAll
+    static void tearDownAll() { SelenideLogger.removeListener("allure");}
 
     private RegistrationInfo info;
 
